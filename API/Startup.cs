@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Extensions;
+using API.Middleware;
 using Application.Activities;
 using Application.Core;
 using Application.Details;
@@ -37,6 +38,7 @@ namespace API
         {
             services.AddControllers();
             services.AddApplicationServices(_config);
+            // services.AddTransient<ExceptionMiddleware>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +46,8 @@ namespace API
         // Middleware is executed in the order that it is added to the pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
