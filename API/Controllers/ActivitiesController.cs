@@ -47,6 +47,7 @@ namespace API.Controllers
         }
 
         // DELETE /api/activities/{id} Endpoint
+        [Authorize(Policy = "IsActivityHost")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteActivity(Guid id)
         {
@@ -54,7 +55,6 @@ namespace API.Controllers
         }
 
         // POST /api/activities/{id}/attend Endpoint
-        [Authorize(Policy = "IsActivityHost")]
         [HttpPost("{id}/attend")]
         public async Task<IActionResult> Attend(Guid id)
         {

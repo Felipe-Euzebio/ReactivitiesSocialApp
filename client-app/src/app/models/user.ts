@@ -1,5 +1,5 @@
 export interface User {
-    username: number;
+    username: string;
     displayName: string;
     token: string;
     image?: string;
